@@ -67,3 +67,29 @@ var isSymmetric = function(root) {
     let isTrue=isSimple(root.left,root.right)
     return isTrue
 };
+
+//最长直径
+var diameterOfBinaryTree = function(root) {
+   if(root==null){
+    return 0
+   }
+   let getdeep=deepNode(root.left)+deepNode(root.right)
+   return Math.max(getdeep,diameterOfBinaryTree(root.left),diameterOfBinaryTree(root.right))
+};
+function deepNode(node){
+    if(node==null) return 0
+    let left=deepNode(node.left)
+    let right=deepNode(node.right)
+    return Math.max(left,right)+1
+
+}
+
+//有序数组转换为二叉搜索树
+var sortedArrayToBST = function(nums) {
+  if(nums.length==0) return  null
+  let midnum=Math.floor(nums.length/2)
+  const root=new TreeNode(nums[midnum])
+  root.left=sortedArrayToBST(nums.slice(0, midnum))
+  root.right=sortedArrayToBST(nums.slice(midnum+1))
+  return root
+};

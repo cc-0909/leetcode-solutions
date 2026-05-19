@@ -140,3 +140,24 @@ var swapPairs = function(head) {
     
     return dummy.next;
 };
+
+//排序列表
+//思路：首先最后一个节点用来进行判断就是this.next是否为空
+ //首先进行遍历，将链表中的值进行遍历存储在数组中
+ //在对这个进行排序操作的时候将这个链表的next也进行指向下一个值
+ var sortList = function(head) {
+    const arr=[]
+    while(head!=null){
+       arr.push(head.val) //将所有的数据全部存储起来
+       head=head.next
+    }
+    let sortarr=arr.sort((a,b)=>a-b)
+    let list=new ListNode(0)
+    let cur=list
+    for(let val of sortarr){
+       cur.next=new ListNode(val)
+       cur=cur.next
+    }
+    return list.next
+
+};
